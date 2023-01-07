@@ -1,0 +1,14 @@
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\obj\Debug\ConfigProjects.csproj.AssemblyReference.cache
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\obj\Debug\ConfigProjects.csproj.CoreCompileInputs.cache
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\ConfigProjects.exe.config
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\ConfigProjects.exe
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\ConfigProjects.pdb
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\Stateless.dll
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\cgen.pdb
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\Stateless.xml
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\CommandLine.xml
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\obj\Debug\ConfigProjects.csproj.CopyComplete
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\obj\Debug\ConfigProjects.exe
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\obj\Debug\ConfigProjects.pdb
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\cgen.exe
+C:\AERTOSProjects\AAAConfigProj\ConfigProjects\bin\Debug\cgen.exe.config
