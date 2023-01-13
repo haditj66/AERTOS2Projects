@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\blinky\conf\blinky.cs">
+      <Link>blinky.cs</Link>
+    </Compile>
     <Compile Include="..\..\commonAOs\conf\commonAOs.cs">
       <Link>commonAOs.cs</Link>
     </Compile>

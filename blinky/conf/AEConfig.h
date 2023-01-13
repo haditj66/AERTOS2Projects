@@ -1,4 +1,4 @@
-//generated file: C:/AERTOSProjects/commonHalAOs\conf\AEConfig.h
+//generated file: C:/AERTOSProjects/blinky\conf\AEConfig.h
 //**********************************************************************
 //this is an auto-generated file using the template file located in the directory of C:\CodeGenerator\CodeGenerator\bin\Debug\..\..\FileTemplates\Files
 //ONLY WRITE CODE IN THE UserCode_Section BLOCKS
@@ -16,6 +16,8 @@
 #endif //  BOARD_USED__STM32F411RE
 
 //UserCode_Sectiondefines
+
+//#define ButtonChanged DummyEVT
 //UserCode_Sectiondefines_end
 
 
@@ -35,20 +37,20 @@
 #define AOPRIORITYLOWEST 5
 #define AOPRIORITYMEDIUM 10
 #define AOPRIORITYHIGHEST 29
-#define NUMOFACTIVEOBJECTS 5
-#define HIGHEST_NUM_OF_EVT_INSTANCES 3
-#define MAX_OUTPUT_SIZE_OF_SPB_SET_TO_TDU 0
-#define NUM_OF_TDUS_THAT_FLOW_FROM_SPBS 0
+#define NUMOFACTIVEOBJECTS 6
+#define HIGHEST_NUM_OF_EVT_INSTANCES 2
+#define MAX_OUTPUT_SIZE_OF_SPB_SET_TO_TDU 1
+#define NUM_OF_TDUS_THAT_FLOW_FROM_SPBS 1
 #define MAXSPB_CHAIN_POOLSIZE 5
 #define MAXNUMOFINTERPRETORS 3
 #define MAXNUMOFOBSERVERINFLUENCES 2
-#define MAXNUMOFOBSERVORS 1
-#define MAXNUMOFSENSORS 1
+#define MAXNUMOFOBSERVORS 5
+#define MAXNUMOFSENSORS 3
 #define MAXNUMBEROF_FILTERS 1
-#define MAXNUMBEROF_FILTERS_From_A_Sensor 1
+#define MAXNUMBEROF_FILTERS_From_A_Sensor 0
 #define MaxNumOfAELoops 3
-#define MAXNUMBEROFINPUTSIGNALS_TO_A_SPB 1
-#define MAXNUMBEROFOUTPUTSIGNALS_TO_A_SPB 1
+#define MAXNUMBEROFINPUTSIGNALS_TO_A_SPB 2
+#define MAXNUMBEROFOUTPUTSIGNALS_TO_A_SPB 2
 #define MAXNUM_OF_SUBSCRIBERS_To_A_SPB 1
 #define MAXNUM_OF_AE_SUBSCRIPTIONS_To_SPBs 1
 #define MAXNUM_OF_TOTAL_SPB_SUBSCRIPTIONS 1
@@ -72,9 +74,6 @@
 //AO defines
 //####################################
 
-#define Event1 DummyEVT
-#define Event1Size 1
-
 #define Signal1 I2CTXCmplt1
 
 #define Signal2 I2CTXCmplt2
@@ -83,56 +82,45 @@
 
 #define Signal4 I2CRXCmplt2
 
-#define Event2 ButtonChanged
-#define Event2Size 5
-
-#define PWMPERIPHERAL1 PWMPeripheral<1, PortD, PIN13> 
-#define PWMPERIPHERAL1_Name PWMPERIPHERAL_inst1
-
-#define GPIOPERIPHERAL1 GPIOPeripheral< PortD, PIN10> 
-#define GPIOPERIPHERAL1_Name GPIOPERIPHERAL_inst1
-
-#define GPIOPERIPHERAL2 GPIOPeripheral< PortD, PIN9> 
-#define GPIOPERIPHERAL2_Name GPIOPERIPHERAL_inst2
-
-#define GPIOPERIPHERAL3 GPIOPeripheral< PortD, PIN8> 
-#define GPIOPERIPHERAL3_Name GPIOPERIPHERAL_inst3
-
-#define GPIOInputPERIPHERAL1 GPIOInputPeripheral< PortD, PIN3> 
-#define GPIOInputPERIPHERAL1_Name GPIOInputPERIPHERAL_inst1
-
-#define UARTPERIPHERAL2 UARTPeripheral<460800, 1, PortA, PIN2, PortA, PIN3> 
-#define UARTPERIPHERAL2_Name UARTPERIPHERAL_inst2
-
-#define ClockType1 AEClock<AEObservorSensorDUMMY, AEObservorInterpretorBaseDUMMY, 0, 0, 1, 0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 1> 
-#define ClockName1 clocl1 
-
-#define AOInclude1 UploadDataToPcU
-#define TemplateToAO1 
-#define ClassNameOfAO1 UploadDataToPcU
-#define TypeOfAO1_1 UploadDataToPcU
-#define InstanceNameOfAO1_1 uploadDataToPcU
-
-
 #define Signal5 UploadDataUartRx1
 
 #define Signal6 UploadDataUartRx2
 
-#define AOInclude2 MotorDriverPWMU
-#define TemplateToAO2 
-#define ClassNameOfAO2 MotorDriverPWMU
-#define TypeOfAO2_1 MotorDriverPWMU
-#define InstanceNameOfAO2_1 motorDriverpwmU
+#define Event1 ButtonChanged
+#define Event1Size 1
 
+#define PWMPERIPHERAL1 PWMPeripheral<1, PortD, PIN12> 
+#define PWMPERIPHERAL1_Name PWMPERIPHERAL_inst1
 
-#define AOInclude3 MotorDriverU
+#define GPIOPERIPHERAL1 GPIOPeripheral< PortA, PIN1> 
+#define GPIOPERIPHERAL1_Name GPIOPERIPHERAL_inst1
+
+#define ClockType1 AEClock<AEObservorSensor, AEObservorInterpretorBaseDUMMY, 1, 0, 0, 0, 0, 0,1, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0> 
+#define ClockName1 clock1 
+
+#define SensorName1 sineSensor
+
+#define SensorName2 sengpioSensorsor2
+
+#define AOInclude1 AverageSPB
+#define TemplateToAO1 template<bool isSubscribable, uint32_t CHANNELCOUNTBUFFER1, TEMPLATESPB_Filters>
+#define ClassNameOfAO1 AverageSPB
+#define TypeOfAO1_1 AverageSPB< false,  4>
+#define InstanceNameOfAO1_1 averageSPB
+
+#define AOInclude2 IfRightOnSPB
+#define TemplateToAO2 template<bool isSubscribable, TEMPLATESPB_Filters>
+#define ClassNameOfAO2 IfRightOnSPB
+#define TypeOfAO2_1 IfRightOnSPB< false>
+#define InstanceNameOfAO2_1 ifRightOnSPB
+
+#define AOInclude3 PWMDriverU
 #define TemplateToAO3 
-#define ClassNameOfAO3 MotorDriverU
-#define TypeOfAO3_1 MotorDriverU
-#define InstanceNameOfAO3_1 motorDriverU
+#define ClassNameOfAO3 PWMDriverU
+#define TypeOfAO3_1 PWMDriverU
+#define InstanceNameOfAO3_1 pWMDriverU
 
 #define AnyOtherNeededIncludes1 GPIOsNeededForMotor 
-
 
 
 

@@ -35,20 +35,20 @@
 #define AOPRIORITYLOWEST 5
 #define AOPRIORITYMEDIUM 10
 #define AOPRIORITYHIGHEST 29
-#define NUMOFACTIVEOBJECTS 6
+#define NUMOFACTIVEOBJECTS 7
 #define HIGHEST_NUM_OF_EVT_INSTANCES 2
 #define MAX_OUTPUT_SIZE_OF_SPB_SET_TO_TDU 0
 #define NUM_OF_TDUS_THAT_FLOW_FROM_SPBS 0
 #define MAXSPB_CHAIN_POOLSIZE 5
 #define MAXNUMOFINTERPRETORS 3
 #define MAXNUMOFOBSERVERINFLUENCES 2
-#define MAXNUMOFOBSERVORS 6
+#define MAXNUMOFOBSERVORS 7
 #define MAXNUMOFSENSORS 2
 #define MAXNUMBEROF_FILTERS 2
 #define MAXNUMBEROF_FILTERS_From_A_Sensor 2
 #define MaxNumOfAELoops 3
 #define MAXNUMBEROFINPUTSIGNALS_TO_A_SPB 3
-#define MAXNUMBEROFOUTPUTSIGNALS_TO_A_SPB 8
+#define MAXNUMBEROFOUTPUTSIGNALS_TO_A_SPB 10
 #define MAXNUM_OF_SUBSCRIBERS_To_A_SPB 1
 #define MAXNUM_OF_AE_SUBSCRIPTIONS_To_SPBs 1
 #define MAXNUM_OF_TOTAL_SPB_SUBSCRIPTIONS 1
@@ -90,29 +90,35 @@
 
 #define AnyOtherNeededIncludes5 HighOrLowFilter 
 
-#define AOInclude1 AverageSPB
-#define TemplateToAO1 template<bool isSubscribable, uint32_t CHANNELCOUNTBUFFER1, TEMPLATESPB_Filters>
-#define ClassNameOfAO1 AverageSPB
-#define TypeOfAO1_1 AverageSPB< false,  10>
-#define InstanceNameOfAO1_1 averageSPB
+#define AOInclude1 IfRightOnSPB
+#define TemplateToAO1 template<bool isSubscribable, TEMPLATESPB_Filters>
+#define ClassNameOfAO1 IfRightOnSPB
+#define TypeOfAO1_1 IfRightOnSPB< false>
+#define InstanceNameOfAO1_1 ifRightOnSPB
 
-#define AOInclude2 PID_SPB
-#define TemplateToAO2 template<bool isSubscribable, uint32_t CHANNEL_CONSUMPTION_SIZE1, TEMPLATESPB_Filters>
-#define ClassNameOfAO2 PID_SPB
-#define TypeOfAO2_1 PID_SPB< false,  1>
-#define InstanceNameOfAO2_1 pidSPB
+#define AOInclude2 AverageSPB
+#define TemplateToAO2 template<bool isSubscribable, uint32_t CHANNELCOUNTBUFFER1, TEMPLATESPB_Filters>
+#define ClassNameOfAO2 AverageSPB
+#define TypeOfAO2_1 AverageSPB< false,  10>
+#define InstanceNameOfAO2_1 averageSPB
 
-#define AOInclude3 ThreeDimensionalVectorSPB
-#define TemplateToAO3 template<bool isSubscribable, TEMPLATESPB_Filters>
-#define ClassNameOfAO3 ThreeDimensionalVectorSPB
-#define TypeOfAO3_1 ThreeDimensionalVectorSPB< false>
-#define InstanceNameOfAO3_1 threeDimensionalVectorSPB
+#define AOInclude3 PID_SPB
+#define TemplateToAO3 template<bool isSubscribable, uint32_t CHANNEL_CONSUMPTION_SIZE1, TEMPLATESPB_Filters>
+#define ClassNameOfAO3 PID_SPB
+#define TypeOfAO3_1 PID_SPB< false,  1>
+#define InstanceNameOfAO3_1 pidSPB
 
-#define AOInclude4 IfAllTrueSPB
-#define TemplateToAO4 template< uint16_t NUMOFINPUTSIGNALS, bool isSubscribable, uint32_t CHANNELCOUNTBUFFER, TEMPLATESPB_Filters>
-#define ClassNameOfAO4 IfAllTrueSPB
-#define TypeOfAO4_1 IfAllTrueSPB< 3,  false, 1>
-#define InstanceNameOfAO4_1 ifAllTrueSPB
+#define AOInclude4 ThreeDimensionalVectorSPB
+#define TemplateToAO4 template<bool isSubscribable, TEMPLATESPB_Filters>
+#define ClassNameOfAO4 ThreeDimensionalVectorSPB
+#define TypeOfAO4_1 ThreeDimensionalVectorSPB< false>
+#define InstanceNameOfAO4_1 threeDimensionalVectorSPB
+
+#define AOInclude5 IfAllTrueSPB
+#define TemplateToAO5 template< uint16_t NUMOFINPUTSIGNALS, bool isSubscribable, uint32_t CHANNELCOUNTBUFFER, TEMPLATESPB_Filters>
+#define ClassNameOfAO5 IfAllTrueSPB
+#define TypeOfAO5_1 IfAllTrueSPB< 3,  false, 1>
+#define InstanceNameOfAO5_1 ifAllTrueSPB
 
 
 

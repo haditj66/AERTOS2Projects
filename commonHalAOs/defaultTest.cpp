@@ -22,7 +22,7 @@
 
 DECLARE_ALL_AO_PTR
 
-static void clocl1_cb(TimerHandle_t xTimerHandle);
+static void clocl1_callback(TimerHandle_t xTimerHandle);
 #include "LoopObjectTest.h"
 static LoopObjectTest* loopObjectTest;
 
@@ -99,7 +99,7 @@ AE_Init();
 
 
 
-static AEClock<AEObservorSensorDUMMY, AEObservorInterpretorBaseDUMMY, 0, 0, 1, 0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 1> clocl1L(100, clocl1_cb);
+static AEClock<AEObservorSensorDUMMY, AEObservorInterpretorBaseDUMMY, 0, 0, 1, 0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 1> clocl1L(100, clocl1_callback);
 clocl1 = &clocl1L;
 
 static UploadDataToPcU uploadDataToPcU_L; uploadDataToPcU_L.Init(AEPriorities::MediumPriority);
@@ -154,7 +154,7 @@ AEAO::ConfigureAndStart();
 //UserCode_Sectionc_end
 
 
-static void clocl1_cb(TimerHandle_t xTimerHandle) {  
+static void clocl1_callback(TimerHandle_t xTimerHandle) {  
   //UserCode_Sectionclocl1before
 //UserCode_Sectionclocl1before_end 
   

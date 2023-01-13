@@ -59,7 +59,7 @@ namespace commonHalAOsProject
         /// up with the frequency of data coming in. </param>
         /// <param name="runName">you can save different runs</param>
         /// <param name="sizeOfVar">size of variables you will be uploading. for example you could upload 5 variables with the second variable being of array size 20</param>
-        public UploadDataToPcU(string instanceNameOfTDU, int serviceBuffersize, AEPriorities priority, int poolSizeOfSignals, int comPort, IUART uartIuse, int bufferThisManyBeforeCallback = 17, string runName = "defaultRun", params int[] sizeOfVar)
+        public UploadDataToPcU(string instanceNameOfTDU, int serviceBuffersize, AEPriorities priority,  int comPort, IUART uartIuse, int bufferThisManyBeforeCallback = 17, string runName = "defaultRun", params int[] sizeOfVar)
             : base("commonHalAOs", instanceNameOfTDU, priority, serviceBuffersize,
                   new CppFunctionArgs(
                         new CppFunctionArg("AEUART*", "uartPeripheralToUse")
@@ -77,8 +77,7 @@ namespace commonHalAOsProject
 
             BufferThisManyBeforeCallback = bufferThisManyBeforeCallback;
 
-            UploadDataUartRx1.Init(poolSizeOfSignals);
-            UploadDataUartRx2.Init(poolSizeOfSignals);
+
 
 
             SizeOfVars = sizeOfVar.ToList();
@@ -369,6 +368,28 @@ namespace commonHalAOsProject
     }
 
 
+
+    public class PWMDriverU : AEUtilityService
+    {
+        public PWMDriverU(string instanceNameOfTDU, int serviceBuffersize, AEPriorities priority, AESPBBase spbIFlowFrom = null)
+            : base("commonHalAOs", instanceNameOfTDU, priority, serviceBuffersize,
+                  new CppFunctionArgs(
+                        new CppFunctionArg("AEPWM*", "pwmThisUses", false)
+                        ),
+                  new ActionRequest("StartPWMFromSPBLinked", ServiceType.TDU, "AENull", "AENull", "placeholder")
+                  )
+        {
+            if (spbIFlowFrom != null)
+            {
+                spbIFlowFrom.FlowIntoTDU(this);
+            }
+            
+        }
+
+        //protected override List<string> GetHeaderIncludesFromLibrary() { return new List<string>() { "GPIOsNeededForMotor" }; }
+
+    }
+
     public class UARTDriverU : AEUtilityService
     {
         public UARTDriverU(string instanceNameOfTDU, int serviceBuffersize, AEPriorities priority)
@@ -499,7 +520,7 @@ namespace commonHalAOsProject
 
 
             UploadDataToPcU uploadDataToPcU = new UploadDataToPcU 
-                ("uploadDataToPcU", 10, AEPriorities.MediumPriority, 10, 3, UARTPERIPHERAL2.Instance, 17, "run1", 1, 20, 1, 1, 1, 1, 1, 1);
+                ("uploadDataToPcU", 10, AEPriorities.MediumPriority, 3, UARTPERIPHERAL2.Instance, 17, "run1", 1, 20, 1, 1, 1, 1, 1, 1);
              
             //UARTDriverU uARTDriverU = new UARTDriverU("uARTDriverU", 10, AEPriorities.MediumPriority);
 
@@ -507,6 +528,8 @@ namespace commonHalAOsProject
             MotorDriverU motorDriverU1 = new MotorDriverU("motorDriverU", 10, AEPriorities.MediumPriority);
 
             //I2CDriverU i2CDriverU = new I2CDriverU("i2CDriverU", 10, AEPriorities.MediumPriority);
+
+            //PWMDriverU pWMDriverU = new PWMDriverU("pWMDriverU", 10, AEPriorities.MediumPriority );
 
             LoopObjectTest loopObjectTest = new LoopObjectTest("loopObjectTest", AEPriorities.MediumPriority, 10);
 
@@ -523,9 +546,11 @@ namespace commonHalAOsProject
 
 
             UploadDataToPcU uploadDataToPcU = new UploadDataToPcU
-                ("uploadDataToPcU", 10, AEPriorities.MediumPriority,10, 3, UARTPERIPHERAL2.Instance, 17, "run1", 1, 32, 1); 
+                ("uploadDataToPcU", 10, AEPriorities.MediumPriority,  3, UARTPERIPHERAL2.Instance, 17, "run1", 1, 32, 1); 
 
             var dataToPC_SPB = DataToPC_SPB.GetDataToPC_SPB("dataToPC_SPB", StyleOfSPB.EachSPBTask, uploadDataToPcU);
+
+            
 
             AESensor aESensor1 = new AESensor("aESensor1", SensorResolution.Resolution16Bit, SensorDataType.int16_T);
             AESensor aESensor2 = new AESensor("aESensor2", SensorResolution.Resolution16Bit, SensorDataType.int16_T);
@@ -553,13 +578,15 @@ namespace commonHalAOsProject
 
 
             UploadDataToPcU uploadDataToPcU = new UploadDataToPcU
-                ("uploadDataToPcU", 10, AEPriorities.MediumPriority, 10, 3, UARTPERIPHERAL2.Instance, 500, "run1", 100);
+                ("uploadDataToPcU", 10, AEPriorities.MediumPriority,  3, UARTPERIPHERAL2.Instance, 500, "run1", 100);
 
             var dataToPC_SPB = DataToPC_SPB.GetDataToPC_SPB("dataToPC_SPB", StyleOfSPB.EachSPBTask, uploadDataToPcU);
-
+            
             AESensor aESensor1 = new AESensor("aESensor1", SensorResolution.Resolution16Bit, SensorDataType.int16_T); 
 
             aEClock2.FlowIntoTDU(uploadDataToPcU, AEClock_PrescalerEnum.PRESCALER1);
+
+            
 
             aEClock
                 .FlowIntoSensor(aESensor1, AEClock_PrescalerEnum.PRESCALER16)
@@ -580,6 +607,8 @@ namespace commonHalAOsProject
             I2CTXCmplt2.Init(3),
             I2CRXCmplt1.Init(3),
             I2CRXCmplt2.Init(3),
+            UploadDataUartRx1.Init(5),
+            UploadDataUartRx2.Init(5),
             ButtonChanged.Init(5)
             };
         }

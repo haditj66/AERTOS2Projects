@@ -1,5 +1,5 @@
 ﻿//#define TEST_AESELECT
-//#define TEST_AEGENERATE
+#define TEST_AEGENERATE
 //#define TEST_AEINIT
 
 using CgenMin.MacroProcesses;

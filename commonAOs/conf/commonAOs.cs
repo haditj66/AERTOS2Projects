@@ -74,8 +74,19 @@ namespace commonAOsProject
     }
     public class AverageSPB : AESPBBase
     {
-        public AverageSPB(string nameOfSPB, StyleOfSPB styleOfSPB, string templateType, bool isSubscribable, SPBChannelUserDefinedCountBuffer ch1)
-            : base("commonAOs", nameOfSPB, styleOfSPB, "", templateType, isSubscribable, new SizeOfSPBOutput(1, false), ch1)
+        public AverageSPB(string nameOfSPB, StyleOfSPB styleOfSPB,  bool isSubscribable, SPBChannelUserDefinedCountBuffer ch1)
+            : base("commonAOs", nameOfSPB, styleOfSPB, "", "", isSubscribable, new SizeOfSPBOutput(1, false), ch1)
+        {
+
+        }
+    }
+
+    public class IfRightOnSPB : AESPBBase
+    {
+        public IfRightOnSPB(string nameOfSPB, StyleOfSPB styleOfSPB,  bool isSubscribable )
+            : base("commonAOs", nameOfSPB, styleOfSPB, "", "", isSubscribable, new SizeOfSPBOutput(1, false), 
+                  new SPBChannelLockedInCountBuffer(1),
+                  new SPBChannelLockedInCountBuffer(1))
         {
 
         }
@@ -190,7 +201,9 @@ namespace commonAOsProject
             DerivativeFilter derivativeFilter = new DerivativeFilter();
             HighOrLowFilter highorlow = new HighOrLowFilter();
 
-            AverageSPB averageSPB = new AverageSPB("averageSPB", StyleOfSPB.EachSPBTask, "", false, new SPBChannelUserDefinedCountBuffer(10));
+            IfRightOnSPB ifRightOnSPB = new IfRightOnSPB("ifRightOnSPB", StyleOfSPB.EachSPBTask, false);
+
+            AverageSPB averageSPB = new AverageSPB("averageSPB", StyleOfSPB.EachSPBTask,   false, new SPBChannelUserDefinedCountBuffer(10));
             PID_SPB pidSPB = new PID_SPB("pidSPB", StyleOfSPB.EachSPBTask,   false, new SPBChannelUserDefinedChannelConsumptionSize(1));
             //PID_WithDesiredInputAsChannel_SPB pidSPB = new PID_WithDesiredInputAsChannel_SPB("pidSPB", StyleOfSPB.EachSPBTask,   false   );
             ThreeDimensionalVectorSPB threeDimensionalVectorSPB = new ThreeDimensionalVectorSPB("threeDimensionalVectorSPB", StyleOfSPB.EachSPBTask, false);
@@ -207,6 +220,9 @@ namespace commonAOsProject
                 .FlowIntoSPB(ifAllTrueSPB, SPBChannelNum.CH0, LinkTypeEnum.Copy)
                 .FlowIntoSPB(ifAllTrueSPB, SPBChannelNum.CH1, LinkTypeEnum.Copy)
                 .FlowIntoSPB(ifAllTrueSPB, SPBChannelNum.CH2, LinkTypeEnum.Copy);
+
+            //sensor1.FlowIntoSPB(ifRightOnSPB, SPBChannelNum.CH0, LinkTypeEnum.Copy)
+            //    .FlowIntoSPB(ifRightOnSPB, SPBChannelNum.CH1, LinkTypeEnum.Copy);
 
             //MovingAverageFilter movingAverageFilter = new MovingAverageFilter(5);
         }

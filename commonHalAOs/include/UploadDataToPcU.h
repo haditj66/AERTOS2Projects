@@ -348,6 +348,9 @@ void _CheckIfThereIsPCConnectionCancelCleanup()
 
 	   
 	   request->SetReturnArg(false);
+	   
+
+	   
 	//I need to wait for a uartRecievedEvt
 	   request->WaitForEvent(this->evtToWaitFor, [](void* p, AEEventDiscriminator_t* evt)->void
 	   {

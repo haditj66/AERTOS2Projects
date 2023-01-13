@@ -54,6 +54,9 @@ sensor1 = &sensor1L;
 
 
 
+static IfRightOnSPB< false> ifRightOnSPBL; ifRightOnSPBL.InitSPBObserver(StyleOfSPB::EachSPBTask); 
+ifRightOnSPB = &ifRightOnSPBL;
+
 static AverageSPB< false,  10> averageSPBL; averageSPBL.InitSPBObserver(StyleOfSPB::EachSPBTask); 
 averageSPB = &averageSPBL;
 
@@ -72,6 +75,10 @@ ifAllTrueSPB = &ifAllTrueSPBL;
 //	  sensor1filt1 = &sensor1L.Filter1;
 //	sensor1filt2 = &sensor1L.Filter2;
 //UserCode_Sectionbeforelinks_end
+static float ifRightOnSPBchBuffer1[1];
+ifRightOnSPB->AddSignalFlowLinkToChannelWithCopy1(sensor1, ifRightOnSPBchBuffer1, 0);
+static float ifRightOnSPBchBuffer2[1];
+ifRightOnSPB->AddSignalFlowLinkToChannelWithCopy2(sensor1, ifRightOnSPBchBuffer2, 0);
 static float averageSPBchBuffer1[10];
 averageSPB->AddSignalFlowLinkToChannelWithCopy1(sensor1, averageSPBchBuffer1, 0);
 static float pidSPBchBuffer1[1];
