@@ -60,6 +60,12 @@
     <Compile Include="..\..\commonEigenAOs\conf\commonEigenAOs.cs">
       <Link>commonEigenAOs.cs</Link>
     </Compile>
+    <Compile Include="..\..\loraTest\conf\loraTest.cs">
+      <Link>loraTest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\lucislidelight\conf\lucislidelight.cs">
+      <Link>lucislidelight.cs</Link>
+    </Compile>
     <Compile Include="..\..\MotorDriverEncoder\conf\MotorDriverEncoder.cs">
       <Link>MotorDriverEncoder.cs</Link>
     </Compile>
